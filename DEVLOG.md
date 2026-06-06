@@ -60,10 +60,19 @@
 - [x] 卡片渲染支持封面图（works.json cover 字段非空时显示背景图）
 - [x] Vite 构建验证通过（7 modules, ~11KB JS gzipped ~2.7KB）
 
+## 2026-06-06 (续 4)
+
+### 阶段 4：动画效果 ✅
+- [x] 页面首次加载：各区块依次渐显上移入场（hero → 分类标签 → 卡片逐张 → 翻页 → 关于我 → 页脚线）
+- [x] 卡片加载使用 staggerIn（60ms 间隔逐张弹出）
+- [x] 分类切换 / 翻页：画廊区域淡出 → 淡入过渡（200ms）
+- [x] animations.js 工具模块（transitionCards + staggerIn）
+- [x] CSS @keyframes fadeUp / fadeIn + .anim-fade-up 动画类
+- [x] Vite 构建验证通过（8 modules, ~12KB JS gzipped ~2.9KB）
+
 ### 待办事项
-- [ ] 阶段 4：动画效果
 - [ ] 阶段 5：关于我页面完善
 - [ ] 阶段 6：部署上线
 
 ### 下一步
-进入阶段 4：动画效果
+进入阶段 5：关于我页面完善

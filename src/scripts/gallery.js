@@ -1,15 +1,17 @@
 /**
- * gallery.js — 分类切换 + 翻页 + 视频播放
- * Phase 2-3: 动态卡片渲染、标签切换、翻页、播放交互
+ * gallery.js — 分类切换 + 翻页 + 视频播放 + 动效
+ * Phase 2-4: 动态卡片渲染、标签切换、翻页、播放交互、过渡动画
  */
 
 import worksData from '../data/works.json';
 import { isMobile, playLightbox, playFullscreen } from './player.js';
+import { transitionCards, staggerIn } from './animations.js';
 
 /* ==================== 状态 ==================== */
 const CARDS_PER_PAGE = 4;
 let currentCategory = 'portrait';
 let currentPage = 1;
+let isInitialLoad = true;
 
 /* ==================== DOM 引用 ==================== */
 const gallery = document.getElementById('gallery');
@@ -21,23 +23,18 @@ const nextBtn = document.querySelector('.pagination-next');
 
 /* ==================== 工具函数 ==================== */
 
-/** 获取指定分类的作品数组 */
 function getCategoryWorks(categoryId) {
   const cat = worksData.categories.find(c => c.id === categoryId);
   return cat ? cat.works : [];
 }
 
-/** 秒数 → "M:SS" 或 "0:SS" */
 function formatDuration(seconds) {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
-  if (m > 0) {
-    return `${m}:${String(s).padStart(2, '0')}`;
-  }
+  if (m > 0) return `${m}:${String(s).padStart(2, '0')}`;
   return `0:${String(s).padStart(2, '0')}`;
 }
 
-/** 当前分类总页数 */
 function getTotalPages() {
   const works = getCategoryWorks(currentCategory);
   return Math.max(1, Math.ceil(works.length / CARDS_PER_PAGE));
@@ -45,7 +42,6 @@ function getTotalPages() {
 
 /* ==================== 渲染 ==================== */
 
-/** 渲染视频卡片 */
 function renderCards() {
   const works = getCategoryWorks(currentCategory);
   const start = (currentPage - 1) * CARDS_PER_PAGE;
@@ -68,12 +64,9 @@ function renderCards() {
   }).join('');
 }
 
-/** 渲染翻页控件 */
 function renderPagination() {
   const totalPages = getTotalPages();
-
   prevBtn.disabled = currentPage <= 1;
-
   paginationDots.innerHTML = '';
   for (let i = 1; i <= totalPages; i++) {
     const dot = document.createElement('span');
@@ -81,21 +74,29 @@ function renderPagination() {
     if (i === currentPage) dot.classList.add('pagination-dot--active');
     paginationDots.appendChild(dot);
   }
-
   nextBtn.disabled = currentPage >= totalPages;
 }
 
-/** 更新分类计数 */
 function renderCount() {
   const works = getCategoryWorks(currentCategory);
   catCount.textContent = `共 ${works.length} 个作品`;
 }
 
-/** 全量刷新 */
+/** 全量刷新（分类切换 / 翻页时带过渡动画） */
 function refresh() {
-  renderCards();
-  renderPagination();
-  renderCount();
+  if (isInitialLoad) {
+    // 首次加载直接渲染，不做过渡
+    renderCards();
+    renderPagination();
+    renderCount();
+    return;
+  }
+  // 后续切换：淡入淡出过渡
+  transitionCards(gallery, () => {
+    renderCards();
+    renderPagination();
+    renderCount();
+  });
 }
 
 /* ==================== 播放事件（事件委托） ==================== */
@@ -145,5 +146,12 @@ nextBtn.addEventListener('click', () => {
 });
 
 /* ==================== 启动 ==================== */
-refresh();
-console.log('作品集交互已就绪 — 分类切换 + 翻页 + 视频播放');
+refresh(); // 首次渲染
+staggerIn('.hero', 0, 0);
+staggerIn('.categories', 100, 0);
+staggerIn('.video-card', 180, 60);
+staggerIn('.pagination', 200, 0);
+staggerIn('.about', 240, 0);
+staggerIn('.footer-line', 280, 0);
+isInitialLoad = false;
+console.log('作品集交互已就绪 — 分类切换 + 翻页 + 视频播放 + 动效');
