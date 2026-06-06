@@ -4,6 +4,13 @@
  */
 
 const MOBILE_BREAKPOINT = 768;
+const SPEEDS = [1, 1.5, 2, 0.75]; // 循环倍速
+
+/** 在当前 speed 数组中查找下一个 */
+function nextSpeed(current) {
+  const idx = SPEEDS.indexOf(current);
+  return SPEEDS[(idx + 1) % SPEEDS.length];
+}
 
 /* ==================== 工具 ==================== */
 
@@ -30,10 +37,13 @@ export function playLightbox(card) {
       <video
         src="${videoSrc}"
         autoplay
+        muted
         playsinline
         controls
+        preload="auto"
         class="lightbox-video"
       ></video>
+      <button class="player-speed-btn" aria-label="倍速">1×</button>
     </div>
   `;
 
@@ -42,14 +52,24 @@ export function playLightbox(card) {
     if (video) video.pause();
     backdrop.remove();
     document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKey);
   }
+
+  // 倍速切换
+  const speedBtn = backdrop.querySelector('.player-speed-btn');
+  const video = backdrop.querySelector('video');
+  speedBtn.addEventListener('click', () => {
+    const next = nextSpeed(video.playbackRate);
+    video.playbackRate = next;
+    speedBtn.textContent = next + '×';
+  });
 
   backdrop.querySelector('.lightbox-close').addEventListener('click', close);
   backdrop.addEventListener('click', (e) => {
     if (e.target === backdrop) close();
   });
   // ESC 键关闭
-  const onKey = (e) => { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', onKey); } };
+  const onKey = (e) => { if (e.key === 'Escape') { close(); } };
   document.addEventListener('keydown', onKey);
 
   document.body.style.overflow = 'hidden';
@@ -71,10 +91,13 @@ export function playFullscreen(card) {
     <video
       src="${videoSrc}"
       autoplay
+      muted
       playsinline
       controls
+      preload="auto"
       class="mobile-player-video"
     ></video>
+    <button class="player-speed-btn player-speed-btn--mobile" aria-label="倍速">1×</button>
   `;
 
   function close() {
@@ -83,6 +106,15 @@ export function playFullscreen(card) {
     overlay.remove();
     document.body.style.overflow = '';
   }
+
+  // 倍速切换
+  const speedBtn = overlay.querySelector('.player-speed-btn');
+  const video = overlay.querySelector('video');
+  speedBtn.addEventListener('click', () => {
+    const next = nextSpeed(video.playbackRate);
+    video.playbackRate = next;
+    speedBtn.textContent = next + '×';
+  });
 
   overlay.querySelector('.mobile-player-close').addEventListener('click', close);
   overlay.addEventListener('click', (e) => {

@@ -70,9 +70,57 @@
 - [x] CSS @keyframes fadeUp / fadeIn + .anim-fade-up 动画类
 - [x] Vite 构建验证通过（8 modules, ~12KB JS gzipped ~2.9KB）
 
-### 待办事项
-- [ ] 阶段 5：关于我页面完善
-- [ ] 阶段 6：部署上线
+## 2026-06-06 (续 5)
 
-### 下一步
-进入阶段 5：关于我页面完善
+### 阶段 5：关于我页面完善 ✅
+- [x] index.html 关于我区域改为 JS 动态渲染（移除硬编码）
+- [x] 顶部导航姓名从 works.json 动态读取
+- [x] renderAbout() 函数：头像、姓名、头衔、简介、经历、联系方式全部从数据渲染
+- [x] 联系方式可交互：邮箱 → mailto 链接、电话 → tel 链接、微信 → 点击复制到剪贴板
+- [x] 微信复制反馈动效（"已复制 ✓" 显示 1.8 秒后恢复）
+- [x] 降级处理：剪贴板 API 不可用时自动选中文本
+- [x] 联系方式链接样式（hover 变鼠尾草绿 + 下划线）
+- [x] Vite 构建验证通过（8 modules, CSS ~9.3KB, JS ~8.8KB）
+
+## 2026-06-06 (续 6)
+
+### 阶段 6：部署上线 ✅
+- [x] 视频压缩：人像 11 个 + 产品 16 个 → H.264 CRF 21/23，总大小从 ~2.8GB 降至 ~285MB
+- [x] GitHub 仓库创建 + 代码推送（dieasap17/photo-portfolio, master 分支）
+- [x] Cloudflare Pages 部署（wrangler CLI 直传）
+- [x] 备份原始视频至 `_backup-portrait/` 和 `_backup-product/`（项目根目录，不入库）
+- [x] 处理 Cloudflare 25MB 单文件限制（C0620.MP4, C2014.mp4 用 CRF 23 重压）
+- [x] _backup 文件夹移出 public/ 防止被打包进 dist
+- [x] .gitignore 更新（添加 _backup/ 和 Image *.png）
+- [x] 生产 URL：`https://photo-portfolio-egr.pages.dev`
+
+### 阶段 6.1：性能优化 ✅
+- [x] **封面预生成**：30 个视频全部生成 WebP 封面缩略图（320px 宽，共 386KB），消除运行时视频帧捕获
+- [x] **头像压缩**：avatar.png 从 1.9MB 压缩至 avatar.webp 4.7KB（280×280）
+- [x] **缓存头**：`public/_headers` — 视频/封面/JS/CSS 1 年不可变缓存，头像 1 周，HTML 实时验证
+- [x] **资源提示**：index.html 添加 avatar.webp preload + dns-prefetch
+- [x] **视频编码修复**：story/2.mp4 从 HEVC 转为 H.264（22.2MB），Chrome/Firefox 可硬解
+- [x] **播放器优化**：player.js 桌面灯箱和移动端播放器都添加 preload="auto"
+- [x] 部署并验证缓存头：所有规则生效 ✓
+- [x] 预览 URL：`https://20c14bc2.photo-portfolio-egr.pages.dev`
+- [x] dist 大小从 ~331MB 降至 ~289MB（-42MB）
+
+### 当前状态
+- 网站已上线并完成性能优化
+- 所有 30 个视频均可流畅播放
+- 封面缩略图即时显示（无闪烁）
+- 浏览器缓存生效，重复访问秒加载
+
+## 2026-06-06 (续 7)
+
+### 阶段 6.2：视频深度压缩 ✅
+- [x] 用户反馈：视频加载慢、部分加载不出来
+- [x] 备份当前视频至 `_backup-compressed-v1/`（CRF 21/23 版本，289MB）
+- [x] 全部 30 个视频用 CRF 26 重压，音频码率降至 96kbps
+- [x] 人像：149MB → 73MB（-51%），最大文件从 22MB 降至 12MB
+- [x] 产品：91MB → 53MB（-42%），最大文件从 18MB 降至 12MB
+- [x] 剧情：story/1.mp4 重压后反而变大（13.8→18.5MB，代际损失），已从备份恢复
+- [x] 剧情最终：39MB（2.mp4 22→16MB，BUV 14→9.5MB）
+- [x] dist 总大小：290MB → 166MB（-43%）
+- [x] 部署上线：所有视频在网络下可更快加载
+- [x] 保留 3 级备份：相机原始素材 → CRF 21 版 → CRF 26 版

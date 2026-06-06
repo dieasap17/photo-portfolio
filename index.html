@@ -6,13 +6,15 @@
   <meta name="description" content="个人摄影作品集" />
   <title>作品集</title>
   <link rel="stylesheet" href="/src/styles/main.css" />
+  <link rel="preload" as="image" href="/avatar.webp" type="image/webp" fetchpriority="high" />
+  <link rel="dns-prefetch" href="//photo-portfolio-egr.pages.dev" />
 </head>
 <body>
   <div id="app">
 
     <!-- ==================== 顶部导航 ==================== -->
     <header class="header">
-      <div class="header-name">YOUR NAME</div>
+      <div class="header-name" id="headerName"></div>
       <nav class="header-nav">
         <span class="header-nav-item">作品</span>
       </nav>
@@ -57,41 +59,8 @@
 
     <hr class="divider" />
 
-    <!-- ==================== 关于我 ==================== -->
-    <section class="about">
-      <!-- 头像 + 姓名：右对齐 -->
-      <div class="about-header">
-        <div class="about-header-text">
-          <h2 class="about-name">你的名字</h2>
-          <p class="about-title">摄影师 / 导演</p>
-        </div>
-        <div class="about-avatar"></div>
-      </div>
-
-      <!-- 简历内容：居中 -->
-      <div class="about-body">
-        <h3 class="about-heading">关于我</h3>
-        <div class="about-heading-line"></div>
-
-        <div class="about-fields">
-          <div class="about-field">
-            <label class="about-field-label">个人简介</label>
-            <div class="about-field-divider"></div>
-            <p class="about-field-value">一段简短的自我介绍，描述你的摄影风格与创作理念。</p>
-          </div>
-          <div class="about-field">
-            <label class="about-field-label">工作经历</label>
-            <div class="about-field-divider"></div>
-            <p class="about-field-value">你的职业经历与项目经验</p>
-          </div>
-          <div class="about-field">
-            <label class="about-field-label">联系方式</label>
-            <div class="about-field-divider"></div>
-            <p class="about-field-value">邮箱 · 微信 · 电话</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- ==================== 关于我（JS 动态渲染） ==================== -->
+    <section class="about" id="about"></section>
 
     <!-- ==================== 页脚线 ==================== -->
     <div class="footer-line"></div>

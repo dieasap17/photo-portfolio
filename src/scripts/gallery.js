@@ -48,12 +48,13 @@ function renderCards() {
   const pageWorks = works.slice(start, start + CARDS_PER_PAGE);
 
   gallery.innerHTML = pageWorks.map(work => {
-    const coverStyle = work.cover
+    const hasCover = !!work.cover;
+    const coverStyle = hasCover
       ? ` style="background-image:url(${work.cover});background-size:cover;background-position:center"`
       : '';
     return `
-      <div class="video-card" data-id="${work.id}" data-video="${work.video}">
-        <div class="video-card-cover"${coverStyle}>
+      <div class="video-card video-card--${work.orientation || 'portrait'}" data-id="${work.id}" data-video="${work.video}" data-duration="${work.duration}">
+        <div class="video-card-cover${hasCover ? '' : ' video-card-cover--pending'}"${coverStyle}>
           <button class="video-card-play" aria-label="播放视频">
             <span class="play-icon"></span>
           </button>
@@ -62,6 +63,88 @@ function renderCards() {
       </div>
     `;
   }).join('');
+
+  // 异步给没有封面的卡片自动截取视频帧
+  applyAutoCovers();
+}
+
+/* ==================== 自动封面截取 ==================== */
+
+/**
+ * 从视频指定时间截取一帧，返回 dataURL
+ * @param {string} videoSrc - 视频路径
+ * @param {number} duration - 视频时长（秒）
+ * @returns {Promise<string|null>}
+ */
+function captureFrame(videoSrc, duration) {
+  return new Promise((resolve) => {
+    const video = document.createElement('video');
+    video.preload = 'metadata';
+    video.muted = true;
+    video.crossOrigin = 'anonymous';
+    video.src = videoSrc;
+
+    // 超时保护：3 秒没加载出来就放弃
+    let settled = false;
+    const timeout = setTimeout(() => {
+      if (!settled) { settled = true; video.remove(); resolve(null); }
+    }, 3000);
+
+    video.onloadedmetadata = () => {
+      if (settled) return;
+      // 截取 1 秒处或视频 20% 处，取较小值
+      const seekTime = Math.min(1, duration * 0.2);
+      video.currentTime = seekTime;
+    };
+
+    video.onseeked = () => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timeout);
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth || 640;
+        canvas.height = video.videoHeight || 360;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0);
+        const dataURL = canvas.toDataURL('image/jpeg', 0.7);
+        video.remove();
+        resolve(dataURL);
+      } catch (e) {
+        video.remove();
+        resolve(null);
+      }
+    };
+
+    video.onerror = () => {
+      if (!settled) { settled = true; clearTimeout(timeout); video.remove(); resolve(null); }
+    };
+
+    video.load();
+  });
+}
+
+/** 给当前页没有封面的卡片自动生成封面 */
+async function applyAutoCovers() {
+  const pending = gallery.querySelectorAll('.video-card-cover--pending');
+  if (pending.length === 0) return;
+
+  for (const coverEl of pending) {
+    const card = coverEl.closest('.video-card');
+    if (!card) continue;
+    const videoSrc = card.dataset.video;
+    const duration = Number(card.dataset.duration) || 10;
+    if (!videoSrc) continue;
+
+    const dataURL = await captureFrame(videoSrc, duration);
+    if (dataURL) {
+      coverEl.style.backgroundImage = `url(${dataURL})`;
+      coverEl.style.backgroundSize = 'cover';
+      coverEl.style.backgroundPosition = 'center';
+    }
+    // 去掉 pending 标记（无论成功失败）
+    coverEl.classList.remove('video-card-cover--pending');
+  }
 }
 
 function renderPagination() {
@@ -81,6 +164,101 @@ function renderCount() {
   const works = getCategoryWorks(currentCategory);
   catCount.textContent = `共 ${works.length} 个作品`;
 }
+
+function renderAbout() {
+  const about = worksData.about;
+  if (!about) return;
+
+  // 顶部导航名字
+  const headerName = document.getElementById('headerName');
+  if (headerName) headerName.textContent = about.name;
+
+  const container = document.getElementById('about');
+  if (!container) return;
+
+  // 联系方式（纯文本展示）
+  const contactParts = [];
+  if (about.contact?.email) {
+    contactParts.push(about.contact.email);
+  }
+  if (about.contact?.wechat && about.contact?.phone && about.contact.wechat === about.contact.phone) {
+    contactParts.push(`电话/微信：${about.contact.wechat}`);
+  } else {
+    if (about.contact?.wechat) {
+      contactParts.push(`微信：${about.contact.wechat}`);
+    }
+    if (about.contact?.phone) {
+      contactParts.push(`电话：${about.contact.phone}`);
+    }
+  }
+  const contactHTML = contactParts.length > 0
+    ? contactParts.join(' · ')
+    : '暂无联系方式';
+
+  const avatarStyle = about.avatar
+    ? ` style="background-image:url(${about.avatar});background-size:cover;background-position:center"`
+    : '';
+
+  const titleHTML = about.title
+    ? `<p class="about-title">${about.title}</p>`
+    : '';
+
+  container.innerHTML = `
+    <div class="about-layout">
+      <div class="about-avatar"${avatarStyle}></div>
+      <div class="about-content">
+        <h3 class="about-heading">关于我</h3>
+        <div class="about-heading-line"></div>
+        <h2 class="about-name">${about.name}</h2>
+        ${titleHTML}
+        <div class="about-fields">
+          <div class="about-field">
+            <span class="about-field-label">个人简介</span>
+            <div class="about-field-divider"></div>
+            <p class="about-field-value">${about.bio || '暂无简介'}</p>
+          </div>
+          <div class="about-field">
+            <span class="about-field-label">工作技能</span>
+            <div class="about-field-divider"></div>
+            <p class="about-field-value">${about.skills || '暂无'}</p>
+          </div>
+          <div class="about-field">
+            <span class="about-field-label">联系方式</span>
+            <div class="about-field-divider"></div>
+            <div class="about-field-value">${contactHTML}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/* ==================== 联系方式交互（事件委托） ==================== */
+
+document.getElementById('about').addEventListener('click', (e) => {
+  const copyEl = e.target.closest('.about-contact-copy');
+  if (!copyEl) return;
+
+  const text = copyEl.dataset.copy;
+  if (!text) return;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const original = copyEl.textContent;
+    copyEl.textContent = '已复制 ✓';
+    copyEl.classList.add('about-contact-copy--done');
+    setTimeout(() => {
+      copyEl.textContent = original;
+      copyEl.classList.remove('about-contact-copy--done');
+    }, 1800);
+  }).catch(() => {
+    // 降级：选中文本让用户手动复制
+    const range = document.createRange();
+    range.selectNodeContents(copyEl);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  });
+});
 
 /** 全量刷新（分类切换 / 翻页时带过渡动画） */
 function refresh() {
@@ -147,6 +325,7 @@ nextBtn.addEventListener('click', () => {
 
 /* ==================== 启动 ==================== */
 refresh(); // 首次渲染
+renderAbout(); // 关于我
 staggerIn('.hero', 0, 0);
 staggerIn('.categories', 100, 0);
 staggerIn('.video-card', 180, 60);
@@ -154,4 +333,4 @@ staggerIn('.pagination', 200, 0);
 staggerIn('.about', 240, 0);
 staggerIn('.footer-line', 280, 0);
 isInitialLoad = false;
-console.log('作品集交互已就绪 — 分类切换 + 翻页 + 视频播放 + 动效');
+console.log('作品集交互已就绪 — 分类切换 + 翻页 + 视频播放 + 动效 + 关于我');

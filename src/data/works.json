@@ -1,574 +1,244 @@
 {
-  "categories": [
-    {
-      "id": "portrait",
-      "name": "人物",
-      "works": [
-        {
-          "id": "portrait-01",
-          "video": "videos/portrait/sample-01.mp4",
-          "cover": "",
-          "duration": 8
-        },
-        {
-          "id": "portrait-02",
-          "video": "videos/portrait/sample-02.mp4",
-          "cover": "",
-          "duration": 5
-        },
-        {
-          "id": "portrait-03",
-          "video": "videos/portrait/sample-03.mp4",
-          "cover": "",
-          "duration": 12
-        },
-        {
-          "id": "portrait-04",
-          "video": "videos/portrait/sample-04.mp4",
-          "cover": "",
-          "duration": 6
-        },
-        {
-          "id": "portrait-05",
-          "video": "videos/portrait/sample-05.mp4",
-          "cover": "",
-          "duration": 9
-        },
-        {
-          "id": "portrait-06",
-          "video": "videos/portrait/sample-06.mp4",
-          "cover": "",
-          "duration": 7
-        },
-        {
-          "id": "portrait-07",
-          "video": "videos/portrait/sample-07.mp4",
-          "cover": "",
-          "duration": 14
-        },
-        {
-          "id": "portrait-08",
-          "video": "videos/portrait/sample-08.mp4",
-          "cover": "",
-          "duration": 10
-        },
-        {
-          "id": "portrait-09",
-          "video": "videos/portrait/sample-09.mp4",
-          "cover": "",
-          "duration": 11
-        },
-        {
-          "id": "portrait-10",
-          "video": "videos/portrait/sample-10.mp4",
-          "cover": "",
-          "duration": 13
-        },
-        {
-          "id": "portrait-11",
-          "video": "videos/portrait/sample-11.mp4",
-          "cover": "",
-          "duration": 6
-        },
-        {
-          "id": "portrait-12",
-          "video": "videos/portrait/sample-12.mp4",
-          "cover": "",
-          "duration": 15
-        },
-        {
-          "id": "portrait-13",
-          "video": "videos/portrait/sample-13.mp4",
-          "cover": "",
-          "duration": 9
-        },
-        {
-          "id": "portrait-14",
-          "video": "videos/portrait/sample-14.mp4",
-          "cover": "",
-          "duration": 7
-        },
-        {
-          "id": "portrait-15",
-          "video": "videos/portrait/sample-15.mp4",
-          "cover": "",
-          "duration": 8
-        },
-        {
-          "id": "portrait-16",
-          "video": "videos/portrait/sample-16.mp4",
-          "cover": "",
-          "duration": 10
-        },
-        {
-          "id": "portrait-17",
-          "video": "videos/portrait/sample-17.mp4",
-          "cover": "",
-          "duration": 12
-        },
-        {
-          "id": "portrait-18",
-          "video": "videos/portrait/sample-18.mp4",
-          "cover": "",
-          "duration": 5
-        },
-        {
-          "id": "portrait-19",
-          "video": "videos/portrait/sample-19.mp4",
-          "cover": "",
-          "duration": 14
-        },
-        {
-          "id": "portrait-20",
-          "video": "videos/portrait/sample-20.mp4",
-          "cover": "",
-          "duration": 11
-        },
-        {
-          "id": "portrait-21",
-          "video": "videos/portrait/sample-21.mp4",
-          "cover": "",
-          "duration": 13
-        },
-        {
-          "id": "portrait-22",
-          "video": "videos/portrait/sample-22.mp4",
-          "cover": "",
-          "duration": 7
-        },
-        {
-          "id": "portrait-23",
-          "video": "videos/portrait/sample-23.mp4",
-          "cover": "",
-          "duration": 6
-        },
-        {
-          "id": "portrait-24",
-          "video": "videos/portrait/sample-24.mp4",
-          "cover": "",
-          "duration": 9
-        },
-        {
-          "id": "portrait-25",
-          "video": "videos/portrait/sample-25.mp4",
-          "cover": "",
-          "duration": 8
-        },
-        {
-          "id": "portrait-26",
-          "video": "videos/portrait/sample-26.mp4",
-          "cover": "",
-          "duration": 15
-        },
-        {
-          "id": "portrait-27",
-          "video": "videos/portrait/sample-27.mp4",
-          "cover": "",
-          "duration": 10
-        },
-        {
-          "id": "portrait-28",
-          "video": "videos/portrait/sample-28.mp4",
-          "cover": "",
-          "duration": 12
-        },
-        {
-          "id": "portrait-29",
-          "video": "videos/portrait/sample-29.mp4",
-          "cover": "",
-          "duration": 11
-        },
-        {
-          "id": "portrait-30",
-          "video": "videos/portrait/sample-30.mp4",
-          "cover": "",
-          "duration": 14
-        }
-      ]
-    },
-    {
-      "id": "product",
-      "name": "产品",
-      "works": [
-        {
-          "id": "product-01",
-          "video": "videos/product/sample-01.mp4",
-          "cover": "",
-          "duration": 6
-        },
-        {
-          "id": "product-02",
-          "video": "videos/product/sample-02.mp4",
-          "cover": "",
-          "duration": 10
-        },
-        {
-          "id": "product-03",
-          "video": "videos/product/sample-03.mp4",
-          "cover": "",
-          "duration": 8
-        },
-        {
-          "id": "product-04",
-          "video": "videos/product/sample-04.mp4",
-          "cover": "",
-          "duration": 11
-        },
-        {
-          "id": "product-05",
-          "video": "videos/product/sample-05.mp4",
-          "cover": "",
-          "duration": 5
-        },
-        {
-          "id": "product-06",
-          "video": "videos/product/sample-06.mp4",
-          "cover": "",
-          "duration": 13
-        },
-        {
-          "id": "product-07",
-          "video": "videos/product/sample-07.mp4",
-          "cover": "",
-          "duration": 7
-        },
-        {
-          "id": "product-08",
-          "video": "videos/product/sample-08.mp4",
-          "cover": "",
-          "duration": 9
-        },
-        {
-          "id": "product-09",
-          "video": "videos/product/sample-09.mp4",
-          "cover": "",
-          "duration": 11
-        },
-        {
-          "id": "product-10",
-          "video": "videos/product/sample-10.mp4",
-          "cover": "",
-          "duration": 13
-        },
-        {
-          "id": "product-11",
-          "video": "videos/product/sample-11.mp4",
-          "cover": "",
-          "duration": 6
-        },
-        {
-          "id": "product-12",
-          "video": "videos/product/sample-12.mp4",
-          "cover": "",
-          "duration": 15
-        },
-        {
-          "id": "product-13",
-          "video": "videos/product/sample-13.mp4",
-          "cover": "",
-          "duration": 9
-        },
-        {
-          "id": "product-14",
-          "video": "videos/product/sample-14.mp4",
-          "cover": "",
-          "duration": 7
-        },
-        {
-          "id": "product-15",
-          "video": "videos/product/sample-15.mp4",
-          "cover": "",
-          "duration": 8
-        },
-        {
-          "id": "product-16",
-          "video": "videos/product/sample-16.mp4",
-          "cover": "",
-          "duration": 10
-        },
-        {
-          "id": "product-17",
-          "video": "videos/product/sample-17.mp4",
-          "cover": "",
-          "duration": 12
-        },
-        {
-          "id": "product-18",
-          "video": "videos/product/sample-18.mp4",
-          "cover": "",
-          "duration": 5
-        },
-        {
-          "id": "product-19",
-          "video": "videos/product/sample-19.mp4",
-          "cover": "",
-          "duration": 14
-        },
-        {
-          "id": "product-20",
-          "video": "videos/product/sample-20.mp4",
-          "cover": "",
-          "duration": 11
-        },
-        {
-          "id": "product-21",
-          "video": "videos/product/sample-21.mp4",
-          "cover": "",
-          "duration": 13
-        },
-        {
-          "id": "product-22",
-          "video": "videos/product/sample-22.mp4",
-          "cover": "",
-          "duration": 7
-        },
-        {
-          "id": "product-23",
-          "video": "videos/product/sample-23.mp4",
-          "cover": "",
-          "duration": 6
-        },
-        {
-          "id": "product-24",
-          "video": "videos/product/sample-24.mp4",
-          "cover": "",
-          "duration": 9
-        },
-        {
-          "id": "product-25",
-          "video": "videos/product/sample-25.mp4",
-          "cover": "",
-          "duration": 8
-        },
-        {
-          "id": "product-26",
-          "video": "videos/product/sample-26.mp4",
-          "cover": "",
-          "duration": 15
-        },
-        {
-          "id": "product-27",
-          "video": "videos/product/sample-27.mp4",
-          "cover": "",
-          "duration": 10
-        },
-        {
-          "id": "product-28",
-          "video": "videos/product/sample-28.mp4",
-          "cover": "",
-          "duration": 12
-        },
-        {
-          "id": "product-29",
-          "video": "videos/product/sample-29.mp4",
-          "cover": "",
-          "duration": 11
-        },
-        {
-          "id": "product-30",
-          "video": "videos/product/sample-30.mp4",
-          "cover": "",
-          "duration": 14
-        }
-      ]
-    },
-    {
-      "id": "story",
-      "name": "剧情",
-      "works": [
-        {
-          "id": "story-01",
-          "video": "videos/story/sample-01.mp4",
-          "cover": "",
-          "duration": 15
-        },
-        {
-          "id": "story-02",
-          "video": "videos/story/sample-02.mp4",
-          "cover": "",
-          "duration": 9
-        },
-        {
-          "id": "story-03",
-          "video": "videos/story/sample-03.mp4",
-          "cover": "",
-          "duration": 7
-        },
-        {
-          "id": "story-04",
-          "video": "videos/story/sample-04.mp4",
-          "cover": "",
-          "duration": 11
-        },
-        {
-          "id": "story-05",
-          "video": "videos/story/sample-05.mp4",
-          "cover": "",
-          "duration": 8
-        },
-        {
-          "id": "story-06",
-          "video": "videos/story/sample-06.mp4",
-          "cover": "",
-          "duration": 14
-        },
-        {
-          "id": "story-07",
-          "video": "videos/story/sample-07.mp4",
-          "cover": "",
-          "duration": 6
-        },
-        {
-          "id": "story-08",
-          "video": "videos/story/sample-08.mp4",
-          "cover": "",
-          "duration": 12
-        },
-        {
-          "id": "story-09",
-          "video": "videos/story/sample-09.mp4",
-          "cover": "",
-          "duration": 11
-        },
-        {
-          "id": "story-10",
-          "video": "videos/story/sample-10.mp4",
-          "cover": "",
-          "duration": 13
-        },
-        {
-          "id": "story-11",
-          "video": "videos/story/sample-11.mp4",
-          "cover": "",
-          "duration": 6
-        },
-        {
-          "id": "story-12",
-          "video": "videos/story/sample-12.mp4",
-          "cover": "",
-          "duration": 15
-        },
-        {
-          "id": "story-13",
-          "video": "videos/story/sample-13.mp4",
-          "cover": "",
-          "duration": 9
-        },
-        {
-          "id": "story-14",
-          "video": "videos/story/sample-14.mp4",
-          "cover": "",
-          "duration": 7
-        },
-        {
-          "id": "story-15",
-          "video": "videos/story/sample-15.mp4",
-          "cover": "",
-          "duration": 8
-        },
-        {
-          "id": "story-16",
-          "video": "videos/story/sample-16.mp4",
-          "cover": "",
-          "duration": 10
-        },
-        {
-          "id": "story-17",
-          "video": "videos/story/sample-17.mp4",
-          "cover": "",
-          "duration": 12
-        },
-        {
-          "id": "story-18",
-          "video": "videos/story/sample-18.mp4",
-          "cover": "",
-          "duration": 5
-        },
-        {
-          "id": "story-19",
-          "video": "videos/story/sample-19.mp4",
-          "cover": "",
-          "duration": 14
-        },
-        {
-          "id": "story-20",
-          "video": "videos/story/sample-20.mp4",
-          "cover": "",
-          "duration": 11
-        },
-        {
-          "id": "story-21",
-          "video": "videos/story/sample-21.mp4",
-          "cover": "",
-          "duration": 13
-        },
-        {
-          "id": "story-22",
-          "video": "videos/story/sample-22.mp4",
-          "cover": "",
-          "duration": 7
-        },
-        {
-          "id": "story-23",
-          "video": "videos/story/sample-23.mp4",
-          "cover": "",
-          "duration": 6
-        },
-        {
-          "id": "story-24",
-          "video": "videos/story/sample-24.mp4",
-          "cover": "",
-          "duration": 9
-        },
-        {
-          "id": "story-25",
-          "video": "videos/story/sample-25.mp4",
-          "cover": "",
-          "duration": 8
-        },
-        {
-          "id": "story-26",
-          "video": "videos/story/sample-26.mp4",
-          "cover": "",
-          "duration": 15
-        },
-        {
-          "id": "story-27",
-          "video": "videos/story/sample-27.mp4",
-          "cover": "",
-          "duration": 10
-        },
-        {
-          "id": "story-28",
-          "video": "videos/story/sample-28.mp4",
-          "cover": "",
-          "duration": 12
-        },
-        {
-          "id": "story-29",
-          "video": "videos/story/sample-29.mp4",
-          "cover": "",
-          "duration": 11
-        },
-        {
-          "id": "story-30",
-          "video": "videos/story/sample-30.mp4",
-          "cover": "",
-          "duration": 14
-        }
-      ]
-    }
-  ],
-  "about": {
-    "name": "你的名字",
-    "title": "摄影师 / 导演",
-    "avatar": "",
-    "bio": "一段简短的自我介绍，描述你的摄影风格与创作理念。",
-    "experience": "你的职业经历与项目经验",
-    "contact": {
-      "email": "your@email.com",
-      "wechat": "your_wechat",
-      "phone": ""
-    }
-  }
+    "categories":  [
+                       {
+                           "id":  "portrait",
+                           "name":  "人物",
+                           "works":  [
+                                         {
+                                             "id":  "p01",
+                                             "video":  "videos/portrait/C0620.MP4",
+                                             "cover":  "covers/C0620.webp",
+                                             "duration":  12,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "p02",
+                                             "video":  "videos/portrait/C0624.MP4",
+                                             "cover":  "covers/C0624.webp",
+                                             "duration":  10,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "p03",
+                                             "video":  "videos/portrait/C1693.mp4",
+                                             "cover":  "covers/C1693.webp",
+                                             "duration":  11,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "p04",
+                                             "video":  "videos/portrait/C1725.MP4",
+                                             "cover":  "covers/C1725.webp",
+                                             "duration":  9,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "p05",
+                                             "video":  "videos/portrait/C1741.MP4",
+                                             "cover":  "covers/C1741.webp",
+                                             "duration":  11,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "p06",
+                                             "video":  "videos/portrait/C1911.mp4",
+                                             "cover":  "covers/C1911.webp",
+                                             "duration":  9,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "p07",
+                                             "video":  "videos/portrait/C2014.mp4",
+                                             "cover":  "covers/C2014.webp",
+                                             "duration":  15,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "p08",
+                                             "video":  "videos/portrait/C9228.MP4",
+                                             "cover":  "covers/C9228.webp",
+                                             "duration":  7,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "p09",
+                                             "video":  "videos/portrait/C9821.MP4",
+                                             "cover":  "covers/C9821.webp",
+                                             "duration":  10,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "p10",
+                                             "video":  "videos/portrait/fx30b20231009_5813.MP4",
+                                             "cover":  "covers/fx30b20231009_5813.webp",
+                                             "duration":  7,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "p11",
+                                             "video":  "videos/portrait/fx30b20231009_5819.MP4",
+                                             "cover":  "covers/fx30b20231009_5819.webp",
+                                             "duration":  7,
+                                             "orientation":  "portrait"
+                                         }
+                                     ]
+                       },
+                       {
+                           "id":  "product",
+                           "name":  "产品",
+                           "works":  [
+                                         {
+                                             "id":  "d01",
+                                             "video":  "videos/product/C0010.mp4",
+                                             "cover":  "covers/C0010.webp",
+                                             "duration":  16,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "d02",
+                                             "video":  "videos/product/C0229.MP4",
+                                             "cover":  "covers/C0229.webp",
+                                             "duration":  15,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "d03",
+                                             "video":  "videos/product/C0323.mp4",
+                                             "cover":  "covers/C0323.webp",
+                                             "duration":  6,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "d04",
+                                             "video":  "videos/product/C0339.mp4",
+                                             "cover":  "covers/C0339.webp",
+                                             "duration":  11,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "d05",
+                                             "video":  "videos/product/C0840.MP4",
+                                             "cover":  "covers/C0840.webp",
+                                             "duration":  9,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "d06",
+                                             "video":  "videos/product/C1435.MP4",
+                                             "cover":  "covers/C1435.webp",
+                                             "duration":  14,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "d07",
+                                             "video":  "videos/product/C1436.mp4",
+                                             "cover":  "covers/C1436.webp",
+                                             "duration":  9,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "d08",
+                                             "video":  "videos/product/C1660.MP4",
+                                             "cover":  "covers/C1660.webp",
+                                             "duration":  28,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "d09",
+                                             "video":  "videos/product/C1864.mp4",
+                                             "cover":  "covers/C1864.webp",
+                                             "duration":  7,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "d10",
+                                             "video":  "videos/product/C1963.mp4",
+                                             "cover":  "covers/C1963.webp",
+                                             "duration":  9,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "d11",
+                                             "video":  "videos/product/C3425.mp4",
+                                             "cover":  "covers/C3425.webp",
+                                             "duration":  9,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "d12",
+                                             "video":  "videos/product/C3575.MP4",
+                                             "cover":  "covers/C3575.webp",
+                                             "duration":  34,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "d13",
+                                             "video":  "videos/product/C4800.mp4",
+                                             "cover":  "covers/C4800.webp",
+                                             "duration":  4,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "d14",
+                                             "video":  "videos/product/C9265.mp4",
+                                             "cover":  "covers/C9265.webp",
+                                             "duration":  14,
+                                             "orientation":  "landscape"
+                                         },
+                                         {
+                                             "id":  "d15",
+                                             "video":  "videos/product/C9716.mp4",
+                                             "cover":  "covers/C9716.webp",
+                                             "duration":  13,
+                                             "orientation":  "landscape"
+                                         },
+                                         {
+                                             "id":  "d16",
+                                             "video":  "videos/product/C9731.mp4",
+                                             "cover":  "covers/C9731.webp",
+                                             "duration":  7,
+                                             "orientation":  "landscape"
+                                         }
+                                     ]
+                       },
+                       {
+                           "id":  "story",
+                           "name":  "剧情",
+                           "works":  [
+                                         {
+                                             "id":  "s01",
+                                             "video":  "videos/story/1.mp4",
+                                             "cover":  "covers/1.webp",
+                                             "duration":  70,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "s02",
+                                             "video":  "videos/story/2.mp4",
+                                             "cover":  "covers/2.webp",
+                                             "duration":  145,
+                                             "orientation":  "portrait"
+                                         },
+                                         {
+                                             "id":  "s03",
+                                             "video":  "videos/story/BUV牛油果紫苏水乳直播间视频11_00216000.mp4",
+                                             "cover":  "covers/BUV牛油果紫苏水乳直播间视频11_00216000.webp",
+                                             "duration":  34,
+                                             "orientation":  "portrait"
+                                         }
+                                     ]
+                       }
+                   ],
+    "about":  {
+                  "name":  "黄宇杰",
+                  "title":  "",
+                  "avatar":  "avatar.webp",
+                  "bio":  "拥有五年+摄影摄像的工作经验，能够熟练使用各类主流相机、云台稳定器等器材，期待与您的合作。",
+                  "skills":  "能够熟练使用PR、达芬奇等主流影视工作软件，熟练掌握达芬奇素材调色以及局部调色磨皮等素材调整功能，能熟练使用主流灯光以及各类灯光附件。",
+                  "contact":  {
+                                  "email":  "alexw1@qq.com",
+                                  "wechat":  "18698375505",
+                                  "phone":  "18698375505"
+                              }
+              }
 }
