@@ -2,17 +2,33 @@
 
 ## 2026-06-06
 
-### 完成事项
-- [x] 项目需求沟通与确认（设计风格、配色、布局、交互）
-- [x] 需求文档编写 (`docs/requirements.md`)
-- [x] 设计规范编写 (`docs/design-spec.md`)
-- [x] 技术规范编写 (`docs/technical-spec.md`)
-- [x] 开发计划制定 (`docs/development-plan.md`)
-- [x] 项目骨架搭建（目录结构、CLAUDE.md）
+### 阶段 0：项目初始化 ✅
+- [x] npm 项目初始化 + Vite 安装
+- [x] 目录结构创建（src/styles, src/scripts, src/data, public/videos, public/covers）
+- [x] index.html 入口文件
+- [x] main.css CSS 变量体系（Morandi 配色 + 亚麻纹理 + 响应式断点）
+- [x] works.json 示例数据（3个分类，9个示例作品 + 关于我信息）
+- [x] JS 模块占位（gallery.js, player.js, animations.js）
+- [x] .gitignore 配置
+- [x] Git 初始化 + 首次提交
+- [x] Vite 构建验证通过
+
+### 需求沟通 ✅
+- [x] 设计风格确认（留白极简 × Morandi × 托斯卡纳）
+- [x] 配色方案确认（暖白底 + 鼠尾草绿互补 + 亚麻纹理）
+- [x] 页面结构确认（单页：作品区 + 关于我）
+- [x] 分类交互确认（人物/产品/剧情 → 切换 + 翻页）
+- [x] 桌面布局确认（4列卡片）
+- [x] 手机端布局确认（双列 + 放大播放 + 关于我右对齐）
+- [x] 视频方案确认（A 方案为主：H.265 压缩直接部署）
+
+### 文档完成 ✅
+- [x] 需求文档 (`docs/requirements.md`)
+- [x] 设计规范 (`docs/design-spec.md`)
+- [x] 技术规范 (`docs/technical-spec.md`)
+- [x] 开发计划 (`docs/development-plan.md`)
 
 ### 待办事项
-- [x] 移动端适配方案确认（双列 + 放大播放 + 关于我右对齐）
-- [ ] 阶段 0：项目初始化（Vite + Git）
 - [ ] 阶段 1：静态布局实现
 - [ ] 阶段 2：分类切换 + 翻页交互
 - [ ] 阶段 3：视频播放功能
@@ -21,4 +37,4 @@
 - [ ] 阶段 6：部署上线
 
 ### 下一步
-进入阶段 0：项目初始化
+进入阶段 1：静态布局实现
