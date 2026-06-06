@@ -7,10 +7,10 @@
 :root {
   /* 主色系 — Morandi 暖调 */
   --color-bg: #faf9f7;
-  --color-card-1: #e0d5be;
-  --color-card-2: #d8cdb4;
-  --color-card-3: #dcd2bc;
-  --color-card-4: #dbd0b8;
+  --color-card-a: #e0d5be;
+  --color-card-b: #d8cdb4;
+  --color-card-c: #dcd2bc;
+  --color-card-d: #dbd0b8;
   --color-card-border: #c8bba0;
   --color-text-primary: #2d2416;
   --color-text-secondary: #6b5d4e;
@@ -20,24 +20,19 @@
   --color-divider: #d4cdb8;
   --color-accent-line: #8b7860;
   --color-accent-green: #8a9a7b;
-  --color-tag-bg: #edebe4;
-  --color-play-btn: rgba(45, 36, 22, 0.65);
+  --color-play-btn-bg: rgba(45, 36, 22, 0.65);
   --color-play-icon: #f0ebe0;
 
   /* 排版 */
   --font-family: "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --letter-spacing-wide: 0.4em;
-  --letter-spacing-mid: 0.3em;
-  --letter-spacing-narrow: 0.2em;
 
   /* 间距 */
-  --space-page-padding: 50px 40px;
-  --space-section-gap: 48px;
+  --page-px: 40px;
+  --section-gap: 48px;
 
   /* 卡片 */
   --card-radius: 8px;
-  --card-border-width: 1.5px;
-  --card-aspect: 4 / 3;
+  --card-border: 1.5px;
 
   /* 动效 */
   --transition-fast: 0.2s ease;
@@ -56,6 +51,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -64,9 +60,10 @@ body {
   color: var(--color-text-primary);
   line-height: 1.6;
   min-height: 100vh;
+  position: relative;
 }
 
-/* === 亚麻纹理背景 === */
+/* === 亚麻纹理 === */
 body::before {
   content: "";
   position: fixed;
@@ -85,12 +82,475 @@ body::before {
 #app {
   position: relative;
   z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px var(--page-px);
 }
 
-/* === 响应式断点 === */
+/* ========================================
+   顶部导航
+   ======================================== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+.header-name {
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  color: var(--color-text-secondary);
+}
+
+.header-nav {
+  display: flex;
+  gap: 36px;
+}
+
+.header-nav-item {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--color-text-muted);
+}
+
+/* ========================================
+   Hero 标题区
+   ======================================== */
+.hero {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.hero-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent-green);
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.hero-title {
+  display: inline;
+  font-size: 36px;
+  font-weight: 300;
+  letter-spacing: 0.16em;
+  color: var(--color-text-primary);
+}
+
+.hero-line {
+  width: 56px;
+  height: 3px;
+  background: var(--color-accent-line);
+  margin: 18px auto 14px;
+}
+
+.hero-subtitle {
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  color: var(--color-text-secondary);
+}
+
+/* ========================================
+   分类标签
+   ======================================== */
+.categories {
+  display: flex;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.cat-tab {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: var(--color-text-inactive);
+  padding: 0 0 10px 0;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.cat-tab:hover {
+  color: var(--color-text-secondary);
+}
+
+.cat-tab--active {
+  color: var(--color-text-primary);
+}
+
+.cat-tab-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-divider);
+  transition: height 0.2s ease, background 0.2s ease;
+}
+
+.cat-tab--active .cat-tab-line {
+  height: 3px;
+  background: var(--color-accent-line);
+}
+
+.cat-count {
+  margin-left: auto;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--color-text-muted);
+  padding-bottom: 10px;
+}
+
+/* ========================================
+   分割线
+   ======================================== */
+.divider {
+  width: 100%;
+  height: 2px;
+  background: var(--color-divider);
+  border: none;
+  margin: 0 0 28px 0;
+}
+
+/* ========================================
+   视频卡片网格
+   ======================================== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+/* ========================================
+   视频卡片
+   ======================================== */
+.video-card {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--card-radius);
+  border: var(--card-border) solid var(--color-card-border);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* 4张卡片颜色微调 */
+.video-card:nth-child(1) { background: var(--color-card-a); border-color: var(--color-card-border); }
+.video-card:nth-child(2) { background: var(--color-card-b); border-color: #c4b89c; }
+.video-card:nth-child(3) { background: var(--color-card-c); border-color: #c0b498; }
+.video-card:nth-child(4) { background: var(--color-card-d); border-color: #c8bba0; }
+
+.video-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(45, 36, 22, 0.08);
+}
+
+/* 封面 + 播放按钮 */
+.video-card-cover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-card-play {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-play-btn-bg);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.video-card:hover .video-card-play {
+  transform: scale(1.08);
+  background: rgba(45, 36, 22, 0.78);
+}
+
+.play-icon {
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 12px solid var(--color-play-icon);
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  margin-left: 3px;
+}
+
+/* 时长角标 */
+.video-card-duration {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(45, 36, 22, 0.6);
+  color: var(--color-divider);
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.12em;
+  pointer-events: none;
+}
+
+/* ========================================
+   翻页控件
+   ======================================== */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 0;
+  margin-bottom: var(--section-gap);
+}
+
+.pagination-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.pagination-btn:hover:not(:disabled) {
+  color: var(--color-text-primary);
+}
+
+.pagination-btn:disabled {
+  color: var(--color-text-inactive);
+  cursor: default;
+}
+
+.pagination-dots {
+  display: flex;
+  gap: 10px;
+}
+
+.pagination-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-divider);
+  transition: background var(--transition-fast);
+}
+
+.pagination-dot--active {
+  background: var(--color-accent-line);
+}
+
+/* ========================================
+   关于我
+   ======================================== */
+.about {
+  margin-bottom: var(--section-gap);
+}
+
+/* 头像+姓名：右对齐 */
+.about-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-right: 4px;
+}
+
+.about-header-text {
+  text-align: right;
+}
+
+.about-name {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  color: var(--color-text-primary);
+}
+
+.about-title {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.about-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #d4c8b0;
+  border: 2px solid #c0b49a;
+  flex-shrink: 0;
+}
+
+/* 简历内容：居中 */
+.about-body {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.about-heading {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  color: var(--color-text-primary);
+  margin-bottom: 0;
+}
+
+.about-heading-line {
+  width: 40px;
+  height: 2px;
+  background: var(--color-accent-line);
+  margin: 12px auto 24px;
+}
+
+.about-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.about-field {
+  text-align: center;
+}
+
+.about-field-label {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--color-text-secondary);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.about-field-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--color-divider);
+  margin: 0 auto 10px;
+}
+
+.about-field-value {
+  font-size: 14px;
+  color: var(--color-text-placeholder);
+  font-style: italic;
+}
+
+/* ========================================
+   页脚线
+   ======================================== */
+.footer-line {
+  width: 100%;
+  height: 3px;
+  background: var(--color-accent-line);
+}
+
+/* ========================================
+   响应式 — 手机端 (< 768px)
+   ======================================== */
 @media (max-width: 768px) {
   :root {
-    --space-page-padding: 24px 16px;
-    --space-section-gap: 32px;
+    --page-px: 16px;
+    --section-gap: 32px;
+  }
+
+  #app {
+    padding: 30px var(--page-px);
+  }
+
+  .header {
+    margin-bottom: 40px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .hero-subtitle {
+    font-size: 11px;
+  }
+
+  .categories {
+    gap: 16px;
+  }
+
+  .cat-tab {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+  }
+
+  .cat-count {
+    font-size: 10px;
+  }
+
+  /* 2 列网格 */
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .video-card:nth-child(3),
+  .video-card:nth-child(4) {
+    /* 保持不同颜色循环 */
+  }
+  .video-card:nth-child(3) { background: var(--color-card-c); border-color: #c0b498; }
+  .video-card:nth-child(4) { background: var(--color-card-d); border-color: #c8bba0; }
+
+  .video-card-play {
+    width: 36px;
+    height: 36px;
+  }
+
+  .play-icon {
+    border-left-width: 10px;
+    border-top-width: 6px;
+    border-bottom-width: 6px;
+  }
+
+  .video-card-duration {
+    font-size: 8px;
+    padding: 2px 6px;
+    bottom: 6px;
+    right: 6px;
+  }
+
+  .pagination {
+    gap: 16px;
+  }
+
+  .pagination-btn {
+    font-size: 10px;
+  }
+
+  .about-header {
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .about-avatar {
+    width: 64px;
+    height: 64px;
+  }
+
+  .about-name {
+    font-size: 14px;
+  }
+
+  .about-body {
+    max-width: 100%;
+    padding: 0 4px;
   }
 }

@@ -9,8 +9,136 @@
 </head>
 <body>
   <div id="app">
-    <!-- 内容由阶段 1 构建 -->
+
+    <!-- ==================== 顶部导航 ==================== -->
+    <header class="header">
+      <div class="header-name">YOUR NAME</div>
+      <nav class="header-nav">
+        <span class="header-nav-item">作品</span>
+      </nav>
+    </header>
+
+    <!-- ==================== Hero 标题区 ==================== -->
+    <section class="hero">
+      <div class="hero-dot"></div>
+      <h1 class="hero-title">作品集</h1>
+      <div class="hero-line"></div>
+      <p class="hero-subtitle">Light &amp; Shadow Portfolio</p>
+    </section>
+
+    <!-- ==================== 分类标签 ==================== -->
+    <div class="categories">
+      <button class="cat-tab cat-tab--active" data-category="portrait">
+        人物
+        <span class="cat-tab-line"></span>
+      </button>
+      <button class="cat-tab" data-category="product">
+        产品
+        <span class="cat-tab-line"></span>
+      </button>
+      <button class="cat-tab" data-category="story">
+        剧情
+        <span class="cat-tab-line"></span>
+      </button>
+      <span class="cat-count">共 3 个作品</span>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ==================== 视频卡片网格 ==================== -->
+    <div class="gallery" id="gallery">
+      <!-- Card 1 -->
+      <div class="video-card">
+        <div class="video-card-cover">
+          <button class="video-card-play" aria-label="播放视频">
+            <span class="play-icon"></span>
+          </button>
+        </div>
+        <span class="video-card-duration">0:08</span>
+      </div>
+      <!-- Card 2 -->
+      <div class="video-card">
+        <div class="video-card-cover">
+          <button class="video-card-play" aria-label="播放视频">
+            <span class="play-icon"></span>
+          </button>
+        </div>
+        <span class="video-card-duration">0:05</span>
+      </div>
+      <!-- Card 3 -->
+      <div class="video-card">
+        <div class="video-card-cover">
+          <button class="video-card-play" aria-label="播放视频">
+            <span class="play-icon"></span>
+          </button>
+        </div>
+        <span class="video-card-duration">0:12</span>
+      </div>
+      <!-- Card 4 -->
+      <div class="video-card">
+        <div class="video-card-cover">
+          <button class="video-card-play" aria-label="播放视频">
+            <span class="play-icon"></span>
+          </button>
+        </div>
+        <span class="video-card-duration">0:06</span>
+      </div>
+    </div>
+
+    <!-- ==================== 翻页控件 ==================== -->
+    <div class="pagination">
+      <button class="pagination-btn pagination-prev" disabled>← 上一页</button>
+      <div class="pagination-dots">
+        <span class="pagination-dot pagination-dot--active"></span>
+        <span class="pagination-dot"></span>
+        <span class="pagination-dot"></span>
+      </div>
+      <button class="pagination-btn pagination-next">下一页 →</button>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ==================== 关于我 ==================== -->
+    <section class="about">
+      <!-- 头像 + 姓名：右对齐 -->
+      <div class="about-header">
+        <div class="about-header-text">
+          <h2 class="about-name">你的名字</h2>
+          <p class="about-title">摄影师 / 导演</p>
+        </div>
+        <div class="about-avatar"></div>
+      </div>
+
+      <!-- 简历内容：居中 -->
+      <div class="about-body">
+        <h3 class="about-heading">关于我</h3>
+        <div class="about-heading-line"></div>
+
+        <div class="about-fields">
+          <div class="about-field">
+            <label class="about-field-label">个人简介</label>
+            <div class="about-field-divider"></div>
+            <p class="about-field-value">一段简短的自我介绍，描述你的摄影风格与创作理念。</p>
+          </div>
+          <div class="about-field">
+            <label class="about-field-label">工作经历</label>
+            <div class="about-field-divider"></div>
+            <p class="about-field-value">你的职业经历与项目经验</p>
+          </div>
+          <div class="about-field">
+            <label class="about-field-label">联系方式</label>
+            <div class="about-field-divider"></div>
+            <p class="about-field-value">邮箱 · 微信 · 电话</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 页脚线 ==================== -->
+    <div class="footer-line"></div>
+
   </div>
+
   <script type="module" src="/src/scripts/gallery.js"></script>
 </body>
 </html>
