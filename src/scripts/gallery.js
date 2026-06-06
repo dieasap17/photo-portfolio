@@ -1,9 +1,10 @@
 /**
- * gallery.js — 分类切换 + 翻页交互
- * Phase 2: 动态卡片渲染、标签切换、翻页逻辑
+ * gallery.js — 分类切换 + 翻页 + 视频播放
+ * Phase 2-3: 动态卡片渲染、标签切换、翻页、播放交互
  */
 
 import worksData from '../data/works.json';
+import { isMobile, playInCard, playFullscreen } from './player.js';
 
 /* ==================== 状态 ==================== */
 const CARDS_PER_PAGE = 4;
@@ -50,26 +51,29 @@ function renderCards() {
   const start = (currentPage - 1) * CARDS_PER_PAGE;
   const pageWorks = works.slice(start, start + CARDS_PER_PAGE);
 
-  gallery.innerHTML = pageWorks.map(work => `
-    <div class="video-card" data-id="${work.id}">
-      <div class="video-card-cover">
-        <button class="video-card-play" aria-label="播放视频">
-          <span class="play-icon"></span>
-        </button>
+  gallery.innerHTML = pageWorks.map(work => {
+    const coverStyle = work.cover
+      ? ` style="background-image:url(${work.cover});background-size:cover;background-position:center"`
+      : '';
+    return `
+      <div class="video-card" data-id="${work.id}" data-video="${work.video}">
+        <div class="video-card-cover"${coverStyle}>
+          <button class="video-card-play" aria-label="播放视频">
+            <span class="play-icon"></span>
+          </button>
+        </div>
+        <span class="video-card-duration">${formatDuration(work.duration)}</span>
       </div>
-      <span class="video-card-duration">${formatDuration(work.duration)}</span>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 /** 渲染翻页控件 */
 function renderPagination() {
   const totalPages = getTotalPages();
 
-  // 上一页按钮
   prevBtn.disabled = currentPage <= 1;
 
-  // 页码点
   paginationDots.innerHTML = '';
   for (let i = 1; i <= totalPages; i++) {
     const dot = document.createElement('span');
@@ -78,7 +82,6 @@ function renderPagination() {
     paginationDots.appendChild(dot);
   }
 
-  // 下一页按钮
   nextBtn.disabled = currentPage >= totalPages;
 }
 
@@ -95,43 +98,54 @@ function refresh() {
   renderCount();
 }
 
-/* ==================== 事件处理 ==================== */
+/* ==================== 播放事件（事件委托） ==================== */
 
-/** 分类标签点击 */
+gallery.addEventListener('click', (e) => {
+  const card = e.target.closest('.video-card');
+  if (!card) return;
+
+  if (isMobile()) {
+    // 手机端：点击卡片任意位置 → 全屏播放
+    playFullscreen(card);
+  } else {
+    // 桌面端：点击播放按钮 → 卡片内播放
+    const playBtn = e.target.closest('.video-card-play');
+    if (playBtn) {
+      playInCard(card);
+    }
+  }
+});
+
+/* ==================== 标签 & 翻页事件 ==================== */
+
 catTabs.forEach(tab => {
   tab.addEventListener('click', () => {
     const category = tab.dataset.category;
     if (category === currentCategory) return;
 
-    // 切换激活态
     catTabs.forEach(t => t.classList.remove('cat-tab--active'));
     tab.classList.add('cat-tab--active');
 
-    // 重置页码并刷新
     currentCategory = category;
     currentPage = 1;
     refresh();
   });
 });
 
-/** 上一页 */
 prevBtn.addEventListener('click', () => {
   if (currentPage > 1) {
     currentPage--;
     refresh();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 });
 
-/** 下一页 */
 nextBtn.addEventListener('click', () => {
   if (currentPage < getTotalPages()) {
     currentPage++;
     refresh();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 });
 
 /* ==================== 启动 ==================== */
 refresh();
-console.log('作品集交互已就绪 — 分类切换 + 翻页');
+console.log('作品集交互已就绪 — 分类切换 + 翻页 + 视频播放');
