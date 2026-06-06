@@ -124,3 +124,27 @@
 - [x] dist 总大小：290MB → 166MB（-43%）
 - [x] 部署上线：所有视频在网络下可更快加载
 - [x] 保留 3 级备份：相机原始素材 → CRF 21 版 → CRF 26 版
+
+## 2026-06-06 (续 8)
+
+### 阶段 7：GitHub Actions 自动部署 ✅
+- [x] 用户反馈：wrangler 直传太慢（90-130 秒通过代理）
+- [x] 创建 `.github/workflows/deploy.yml` — push master 自动触发
+- [x] 使用 wrangler OAuth 配置（含 refresh token），base64 存储为 GitHub Secret
+- [x] 构建命令：`npm run build`，输出：`dist`，Node.js 22
+- [x] 两次验证通过：30s / 28s 完成部署（GitHub 机房直连，快 3-4x）
+- [x] Token 自动刷新：OAuth refresh token 在 wrangler 中自动续期
+- [x] 用户只需 `git push`，其他全自动
+
+### 阶段 7.1：视频深度压缩（二次激进压缩）✅
+- [x] 用户要求：更激进的压缩，目标 15 秒内加载
+- [x] 备份当前视频至 `_backup/videos-pre-compress-v2/`（289MB）
+- [x] **4K → 1080p**：C0620, C0624, fx30b_5813, fx30b_5819, C9716 — scale + CRF 28
+- [x] **大 1080p CRF 30**：C1693, C2014, C1911, C9265, C3575
+- [x] **Story 视频**：1.mp4 跳过（已是最优），2.mp4 CRF 28, BUV CRF 30
+- [x] **其余视频 CRF 26-28**：17 个小视频批量压缩
+- [x] **总效果：289MB → 97MB（-66.3%）**
+- [x] 4K 视频效果最显著：单文件从 17-22MB 降至 1.3-3.3MB（-90%）
+- [x] 最大单文件：story/1.mp4 13.8MB（未压缩，已是最优）
+- [x] 所有视频 H.264 + AAC 64k + faststart，全平台可播
+- [x] 推送到 GitHub，自动部署到 Cloudflare Pages
