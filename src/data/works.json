@@ -1,0 +1,88 @@
+{
+  "categories": [
+    {
+      "id": "portrait",
+      "name": "人物",
+      "works": [
+        {
+          "id": "portrait-01",
+          "video": "videos/portrait/sample-01.mp4",
+          "cover": "",
+          "duration": 8
+        },
+        {
+          "id": "portrait-02",
+          "video": "videos/portrait/sample-02.mp4",
+          "cover": "",
+          "duration": 5
+        },
+        {
+          "id": "portrait-03",
+          "video": "videos/portrait/sample-03.mp4",
+          "cover": "",
+          "duration": 12
+        }
+      ]
+    },
+    {
+      "id": "product",
+      "name": "产品",
+      "works": [
+        {
+          "id": "product-01",
+          "video": "videos/product/sample-01.mp4",
+          "cover": "",
+          "duration": 6
+        },
+        {
+          "id": "product-02",
+          "video": "videos/product/sample-02.mp4",
+          "cover": "",
+          "duration": 10
+        }
+      ]
+    },
+    {
+      "id": "story",
+      "name": "剧情",
+      "works": [
+        {
+          "id": "story-01",
+          "video": "videos/story/sample-01.mp4",
+          "cover": "",
+          "duration": 15
+        },
+        {
+          "id": "story-02",
+          "video": "videos/story/sample-02.mp4",
+          "cover": "",
+          "duration": 9
+        },
+        {
+          "id": "story-03",
+          "video": "videos/story/sample-03.mp4",
+          "cover": "",
+          "duration": 7
+        },
+        {
+          "id": "story-04",
+          "video": "videos/story/sample-04.mp4",
+          "cover": "",
+          "duration": 11
+        }
+      ]
+    }
+  ],
+  "about": {
+    "name": "你的名字",
+    "title": "摄影师 / 导演",
+    "avatar": "",
+    "bio": "一段简短的自我介绍，描述你的摄影风格与创作理念。",
+    "experience": "你的职业经历与项目经验",
+    "contact": {
+      "email": "your@email.com",
+      "wechat": "your_wechat",
+      "phone": ""
+    }
+  }
+}

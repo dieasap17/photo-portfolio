@@ -1,0 +1,96 @@
+/* ========================================
+   摄影作品集 — 主样式表
+   设计方向：留白极简 × Morandi × 托斯卡纳
+   ======================================== */
+
+/* === CSS 变量 === */
+:root {
+  /* 主色系 — Morandi 暖调 */
+  --color-bg: #faf9f7;
+  --color-card-1: #e0d5be;
+  --color-card-2: #d8cdb4;
+  --color-card-3: #dcd2bc;
+  --color-card-4: #dbd0b8;
+  --color-card-border: #c8bba0;
+  --color-text-primary: #2d2416;
+  --color-text-secondary: #6b5d4e;
+  --color-text-muted: #8c7b65;
+  --color-text-inactive: #b8a899;
+  --color-text-placeholder: #c0b49a;
+  --color-divider: #d4cdb8;
+  --color-accent-line: #8b7860;
+  --color-accent-green: #8a9a7b;
+  --color-tag-bg: #edebe4;
+  --color-play-btn: rgba(45, 36, 22, 0.65);
+  --color-play-icon: #f0ebe0;
+
+  /* 排版 */
+  --font-family: "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --letter-spacing-wide: 0.4em;
+  --letter-spacing-mid: 0.3em;
+  --letter-spacing-narrow: 0.2em;
+
+  /* 间距 */
+  --space-page-padding: 50px 40px;
+  --space-section-gap: 48px;
+
+  /* 卡片 */
+  --card-radius: 8px;
+  --card-border-width: 1.5px;
+  --card-aspect: 4 / 3;
+
+  /* 动效 */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.35s ease;
+}
+
+/* === 全局重置 === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* === 亚麻纹理背景 === */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(170, 155, 135, 0.07) 2px,
+    rgba(170, 155, 135, 0.07) 4px
+  );
+}
+
+#app {
+  position: relative;
+  z-index: 1;
+}
+
+/* === 响应式断点 === */
+@media (max-width: 768px) {
+  :root {
+    --space-page-padding: 24px 16px;
+    --space-section-gap: 32px;
+  }
+}
