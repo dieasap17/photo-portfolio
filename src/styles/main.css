@@ -414,11 +414,11 @@ body::before {
 .lightbox-close-icon::before { transform: rotate(45deg); }
 .lightbox-close-icon::after  { transform: rotate(-45deg); }
 
-/* 倍速按钮 */
+/* 倍速按钮 — 右下角，避开原生进度条 */
 .player-speed-btn {
   position: absolute;
-  bottom: 12px;
-  left: 12px;
+  bottom: 56px;
+  right: 16px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #e0d8ce;
@@ -438,8 +438,8 @@ body::before {
 }
 
 .player-speed-btn--mobile {
-  bottom: 16px;
-  left: 16px;
+  bottom: 60px;
+  right: 16px;
   font-size: 10px;
   padding: 4px 10px;
 }
