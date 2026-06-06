@@ -1,6 +1,6 @@
 /**
  * player.js — 视频播放控制
- * Phase 3: 桌面卡片内播放 + 移动端全屏播放
+ * Phase 3: 桌面灯箱放大播放 + 移动端全屏播放
  */
 
 const MOBILE_BREAKPOINT = 768;
@@ -12,85 +12,79 @@ export function isMobile() {
   return window.innerWidth < MOBILE_BREAKPOINT;
 }
 
-/* ==================== 公共方法 ==================== */
+/* ==================== 桌面端：灯箱放大播放 ==================== */
 
-/**
- * 桌面端：在卡片内播放视频
- * 再次点击视频 → 停止并恢复封面
- * 视频自然结束 → 自动恢复封面
- */
-export function playInCard(card) {
+export function playLightbox(card) {
   const videoSrc = card.dataset.video;
   if (!videoSrc) return;
 
-  // 如果已在播放，点击 → 停止
-  const existingVideo = card.querySelector('.video-card-video');
-  if (existingVideo) {
-    existingVideo.pause();
-    existingVideo.remove();
-    showCover(card);
-    return;
+  closeExisting();
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'lightbox';
+  backdrop.innerHTML = `
+    <button class="lightbox-close" aria-label="关闭">
+      <span class="lightbox-close-icon"></span>
+    </button>
+    <div class="lightbox-stage">
+      <video
+        src="${videoSrc}"
+        autoplay
+        playsinline
+        controls
+        class="lightbox-video"
+      ></video>
+    </div>
+  `;
+
+  function close() {
+    const video = backdrop.querySelector('video');
+    if (video) video.pause();
+    backdrop.remove();
+    document.body.style.overflow = '';
   }
 
-  hideCover(card);
-
-  const video = document.createElement('video');
-  video.src = videoSrc;
-  video.autoplay = true;
-  video.playsInline = true;
-  video.loop = false;
-  video.setAttribute('playsinline', '');
-  video.className = 'video-card-video';
-
-  video.addEventListener('click', (e) => {
-    e.stopPropagation();
-    video.pause();
-    video.remove();
-    showCover(card);
+  backdrop.querySelector('.lightbox-close').addEventListener('click', close);
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) close();
   });
+  // ESC 键关闭
+  const onKey = (e) => { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', onKey); } };
+  document.addEventListener('keydown', onKey);
 
-  video.addEventListener('ended', () => {
-    video.remove();
-    showCover(card);
-  });
-
-  card.appendChild(video);
+  document.body.style.overflow = 'hidden';
+  document.body.appendChild(backdrop);
 }
 
-/**
- * 移动端：全屏覆盖层播放
- * 关闭按钮 / 点击遮罩 → 关闭
- */
+/* ==================== 移动端：全屏覆盖层播放 ==================== */
+
 export function playFullscreen(card) {
   const videoSrc = card.dataset.video;
   if (!videoSrc) return;
 
-  // 关闭之前的覆盖层（如果有）
-  const existing = document.querySelector('.video-overlay');
-  if (existing) existing.remove();
+  closeExisting();
 
   const overlay = document.createElement('div');
-  overlay.className = 'video-overlay';
+  overlay.className = 'mobile-player';
   overlay.innerHTML = `
-    <button class="video-overlay-close" aria-label="关闭">✕</button>
+    <button class="mobile-player-close" aria-label="关闭">✕</button>
     <video
       src="${videoSrc}"
       autoplay
       playsinline
       controls
-      class="video-overlay-video"
+      class="mobile-player-video"
     ></video>
   `;
 
-  const closeBtn = overlay.querySelector('.video-overlay-close');
-
   function close() {
-    overlay.querySelector('video').pause();
+    const video = overlay.querySelector('video');
+    if (video) video.pause();
     overlay.remove();
     document.body.style.overflow = '';
   }
 
-  closeBtn.addEventListener('click', close);
+  overlay.querySelector('.mobile-player-close').addEventListener('click', close);
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) close();
   });
@@ -101,12 +95,11 @@ export function playFullscreen(card) {
 
 /* ==================== 内部辅助 ==================== */
 
-function hideCover(card) {
-  const cover = card.querySelector('.video-card-cover');
-  if (cover) cover.style.display = 'none';
-}
-
-function showCover(card) {
-  const cover = card.querySelector('.video-card-cover');
-  if (cover) cover.style.display = '';
+function closeExisting() {
+  const existing = document.querySelector('.lightbox, .mobile-player');
+  if (existing) {
+    const video = existing.querySelector('video');
+    if (video) video.pause();
+    existing.remove();
+  }
 }

@@ -4,7 +4,7 @@
  */
 
 import worksData from '../data/works.json';
-import { isMobile, playInCard, playFullscreen } from './player.js';
+import { isMobile, playLightbox, playFullscreen } from './player.js';
 
 /* ==================== 状态 ==================== */
 const CARDS_PER_PAGE = 4;
@@ -105,13 +105,11 @@ gallery.addEventListener('click', (e) => {
   if (!card) return;
 
   if (isMobile()) {
-    // 手机端：点击卡片任意位置 → 全屏播放
     playFullscreen(card);
   } else {
-    // 桌面端：点击播放按钮 → 卡片内播放
     const playBtn = e.target.closest('.video-card-play');
     if (playBtn) {
-      playInCard(card);
+      playLightbox(card);
     }
   }
 });
