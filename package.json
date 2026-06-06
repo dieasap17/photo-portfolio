@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "vite": "^8.0.16"
+    "vite": "^8.0.16",
+    "wrangler": "^4.98.0"
   }
 }
