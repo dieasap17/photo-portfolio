@@ -86,21 +86,21 @@
                                              "video":  "videos/portrait/C0381.mp4",
                                              "cover":  "covers/C0381.webp",
                                              "duration":  22,
-                                             "orientation":  "landscape"
+                                             "orientation":  "portrait"
                                          },
                                          {
                                              "id":  "p13",
                                              "video":  "videos/portrait/C0405.mp4",
                                              "cover":  "covers/C0405.webp",
                                              "duration":  7,
-                                             "orientation":  "landscape"
+                                             "orientation":  "portrait"
                                          },
                                          {
                                              "id":  "p14",
                                              "video":  "videos/portrait/C0484.mp4",
                                              "cover":  "covers/C0484.webp",
                                              "duration":  10,
-                                             "orientation":  "landscape"
+                                             "orientation":  "portrait"
                                          }
                                      ]
                        },
